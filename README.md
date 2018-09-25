@@ -1,4 +1,4 @@
-# xml-builder
+# Kotlin XML builder
 Simplest XML builder for Kotlin
 
 ```kotlin

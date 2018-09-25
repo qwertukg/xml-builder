@@ -22,6 +22,7 @@ val xmlString = tag("html") {
 ```
 Will be: 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
 <html>
     <head>
         <title>Is XML?</title>

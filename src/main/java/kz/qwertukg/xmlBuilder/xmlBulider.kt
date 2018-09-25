@@ -19,7 +19,7 @@ interface Tag {
 
     fun render(margin: Int = 0): String
 
-    fun renderOpeningTag(isClosed: Boolean = false) = StringBuilder().apply {
+    fun renderStartTeg(isClosed: Boolean = false) = StringBuilder().apply {
         append("<$name")
         attributes.forEach { append(" ${it.name}=\"${it.value}\"") }
         if (isClosed) append("/>") else append(">")
@@ -38,7 +38,7 @@ data class TagFather(override var name: String, override val attributes: Mutable
             appendln(declaration)
             declaration = ""
         }
-        appendln(TAB.repeat(margin) + renderOpeningTag(tags.isEmpty()))
+        appendln(TAB.repeat(margin) + renderStartTeg(tags.isEmpty()))
         if (tags.isNotEmpty()) {
             tags.forEach { appendln(it.render(margin + 1)) }
             append(TAB.repeat(margin) + "</$name>")
@@ -48,7 +48,7 @@ data class TagFather(override var name: String, override val attributes: Mutable
 
 data class TagValue(override var name: String, val value: String, override val attributes: MutableList<Attribute> = mutableListOf()) : Tag {
     override fun render(margin: Int) = StringBuilder().apply {
-        append(TAB.repeat(margin) + renderOpeningTag(value.isBlank()))
+        append(TAB.repeat(margin) + renderStartTeg(value.isBlank()))
         if (value.isNotBlank()) {
             append(value)
             append("</$name>")

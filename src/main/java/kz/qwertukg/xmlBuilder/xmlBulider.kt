@@ -33,7 +33,7 @@ data class TagFather(override var name: String, override val attributes: Mutable
     override fun render(margin: Int): String = StringBuilder().apply {
         appendln(TAB.repeat(margin) + renderOpeningTag())
         tags.forEach { appendln(it.render(margin + 1)) }
-        append(TAB.repeat(margin) + "<$name/>")
+        append(TAB.repeat(margin) + "</$name>")
     }.toString()
 }
 
@@ -41,7 +41,7 @@ data class TagValue(override var name: String, val value: String, override val a
     override fun render(margin: Int) = StringBuilder().apply {
         append(TAB.repeat(margin) + renderOpeningTag())
         append(value)
-        append("<$name/>")
+        append("</$name>")
     }.toString()
 }
 

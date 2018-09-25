@@ -20,3 +20,21 @@ val xmlString = tag("html") {
     }
 }.render()
 ```
+Will be: 
+```xml
+<html>
+    <head>
+        <title>Is XML?<title/>
+    <head/>
+    <body>
+        <h1>Hello world!<h1/>
+        <p>
+            <a href="https://kotlinlang.org" target="_blank">Kotlin<a/>
+        <p/>
+        <p>
+            <img src="kotlin.png">
+            <img/>
+        <p/>
+    <body/>
+<html/>
+```

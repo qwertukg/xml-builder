@@ -32,8 +32,7 @@ Will be:
             <a href="https://kotlinlang.org" target="_blank">Kotlin</a>
         </p>
         <p>
-            <img src="kotlin.png">
-            </img>
+            <img src="kotlin.png"/>
         </p>
     </body>
 </html>

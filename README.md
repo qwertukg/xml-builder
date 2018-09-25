@@ -24,17 +24,17 @@ Will be:
 ```xml
 <html>
     <head>
-        <title>Is XML?<title/>
-    <head/>
+        <title>Is XML?</title>
+    </head>
     <body>
-        <h1>Hello world!<h1/>
+        <h1>Hello world!</h1>
         <p>
-            <a href="https://kotlinlang.org" target="_blank">Kotlin<a/>
-        <p/>
+            <a href="https://kotlinlang.org" target="_blank">Kotlin</a>
+        </p>
         <p>
             <img src="kotlin.png">
-            <img/>
-        <p/>
-    <body/>
-<html/>
+            </img>
+        </p>
+    </body>
+</html>
 ```

@@ -48,4 +48,21 @@ class BasicTest {
         assertEquals(expectedXml, actualXml)
     }
 
+    @Test
+    fun `Check cleaning and encapsulation`() {
+        val actualXml = tag("!\"#\$%&'()*+,/;<=>?@[\\]^`{|}~user\"") {
+            attr("id&", "1")
+            tag("n a me", "Ivan\"")
+        }.render()
+
+        val expectedXml = """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <user id="1">
+                <name>Ivan&quot;</name>
+            </user>
+        """.trimIndent().replace("\n", System.lineSeparator())
+
+        assertEquals(expectedXml, actualXml)
+    }
+
 }

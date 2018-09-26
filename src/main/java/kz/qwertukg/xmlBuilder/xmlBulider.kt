@@ -15,7 +15,7 @@ interface Tag {
     var name: String
     val attributes: MutableList<Attribute>
 
-    fun attr(name: String, value: String) = attributes.add(Attribute(name.clean(), value.encaps()))
+    fun attr(name: String, value: String) = attributes.add(Attribute(name.clean(), value.escape()))
 
     fun render(margin: Int = 0): String
 
@@ -31,7 +31,7 @@ data class TagFather(override var name: String, override val attributes: Mutable
 
     fun tag(name: String, block: TagFather.() -> Unit = {}) = tags.add(TagFather(name.clean()).apply(block))
 
-    fun tag(name: String, value: String, block: TagValue.() -> Unit = {}) = tags.add(TagValue(name.clean(), value.encaps()).apply(block))
+    fun tag(name: String, value: String, block: TagValue.() -> Unit = {}) = tags.add(TagValue(name.clean(), value.escape()).apply(block))
 
     override fun render(margin: Int): String = StringBuilder().apply {
         if (declaration.isNotBlank()) {
@@ -57,9 +57,13 @@ data class TagValue(override var name: String, val value: String, override val a
 }
 
 fun tag(name: String, version: String = "1.0", encoding: String = "UTF-8", block: TagFather.() -> Unit) = TagFather(name.clean()).apply {
-    declaration = """<?xml version="$version" encoding="$encoding"?>"""
+    declaration = """<?xml version="${version.escape()}" encoding="${encoding.escape()}"?>"""
     block()
 }
 
-private fun String.clean() = this // TODO
-private fun String.encaps() = this // TODO
+private fun String.clean() = replace(Regex("[\\\\!\"#\$%&'()*+,/;<=>?@\\[\\]^`{|}~ ]"), "")
+private fun String.escape() = replace("<", "&lt;")
+        .replace(">", "&gt;")
+        .replace("&", "&amp;")
+        .replace("'", "&apos;")
+        .replace("\"", "&quot;")

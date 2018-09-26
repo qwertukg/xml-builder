@@ -62,6 +62,8 @@ fun tag(name: String, version: String = "1.0", encoding: String = "UTF-8", block
 }
 
 private fun String.clean() = replace(Regex("[\\\\!\"#\$%&'()*+,/;<=>?@\\[\\]^`{|}~ ]"), "")
+        .replace(Regex("^([-.])+"), "")
+
 private fun String.escape() = replace("<", "&lt;")
         .replace(">", "&gt;")
         .replace("&", "&amp;")

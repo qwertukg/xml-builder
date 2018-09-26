@@ -51,8 +51,8 @@ class BasicTest {
     @Test
     fun `Check cleaning and encapsulation`() {
         val actualXml = tag("!\"#\$%&'()*+,/;<=>?@[\\]^`{|}~user\"") {
-            attr("id&", "1")
-            tag("n a me", "Ivan\"")
+            attr("...id&", "1")
+            tag("--n a me", "Ivan\"")
         }.render()
 
         val expectedXml = """

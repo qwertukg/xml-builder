@@ -5,14 +5,14 @@ import java.lang.StringBuilder
 @DslMarker
 annotation class TagMarker
 
-const val TAB = "    "
-val RN = System.lineSeparator()!!
+private const val TAB = "    "
+private val RN = System.lineSeparator()!!
 
 data class Attribute(val name: String, val value: String)
 
 @TagMarker
 interface Tag {
-    var name: String
+    val name: String
     val attributes: MutableList<Attribute>
 
     fun attr(name: String, value: String) = attributes.add(Attribute(name.clean(), value.escape()))

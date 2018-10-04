@@ -27,16 +27,16 @@ interface Tag {
 }
 
 data class TagFather(override var name: String, override val attributes: MutableList<Attribute> = mutableListOf(), val tags: MutableList<Tag> = mutableListOf()) : Tag {
-    var declaration = ""
+    var declaration: String? = null
 
     fun tag(name: String, block: TagFather.() -> Unit = {}) = tags.add(TagFather(name.clean()).apply(block))
 
     fun tag(name: String, value: String, block: TagValue.() -> Unit = {}) = tags.add(TagValue(name.clean(), value.escape()).apply(block))
 
     override fun render(margin: Int): String = StringBuilder().apply {
-        if (declaration.isNotBlank()) {
+        if (declaration != null) {
             appendln(declaration)
-            declaration = ""
+            declaration = null
         }
         appendln(TAB.repeat(margin) + renderStartTeg(tags.isEmpty()))
         if (tags.isNotEmpty()) {
